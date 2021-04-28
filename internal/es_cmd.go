@@ -16,22 +16,16 @@ limitations under the License.
 package internal
 
 import (
-	//"fmt"
 	"github.com/gookit/color"
 	"github.com/spf13/viper"
-
-	//elastic "github.com/olivere/elastic/v7"
-	//"github.com/olivere/elastic/v7/config"
-	//"github.com/gookit/color"
 	"easy/library"
 	"easy/library/utils"
 	"github.com/spf13/cobra"
-	//"github.com/spf13/viper"
 )
 
 
 
-// initdbCmd represents the initdb command
+// importEsCmd
 var importEsCmd = &cobra.Command{
 	Use:   "Es",
 	Short: "导入数据到ES",
@@ -40,7 +34,7 @@ var importEsCmd = &cobra.Command{
 		method, _ := cmd.Flags().GetString("method")
 		path, _ := cmd.Flags().GetString("configpath")
 		if path!=""{
-			//rootCmd.PersistentFlags().StringVar(&cfgFile, "config", path, "config file (default is $HOME/./config/viper.yaml)")
+			//重新读取配置
 			viper.SetConfigFile(path)
 			if err := viper.ReadInConfig(); err == nil {
 				color.Warn.Println("reset config, file:", viper.ConfigFileUsed())
@@ -79,13 +73,11 @@ var importEsCmd = &cobra.Command{
 
 
 func init() {
-
 	rootCmd.AddCommand(importEsCmd)
 	importEsCmd.Flags().StringP("configpath", "c", "", "自定配置文件路径")
 	importEsCmd.Flags().StringP("method", "f", "config", "默认config走配置文件形式")
 	//importEsCmd.Flags().StringP("doc", "d", "", "指定插入的doc")
 	//importEsCmd.Flags().StringP("docId", "i", "", "指定插入doc的id")
-
 }
 
 func executeResult(newC int, b bool) {
