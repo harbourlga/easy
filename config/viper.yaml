@@ -1,0 +1,22 @@
+#Elasticsearch config
+ES:
+  indexName: 'test'
+  url: 'http://81.68.145.26:9200'
+  mapping: '"properties": {
+                        "title": {
+                            "type": "text",
+                            "analyzer": "ik_max_word",
+                            "search_analyzer": "ik_smart"
+                        },
+                        "content": {
+                            "type": "text",
+                            "analyzer": "ik_max_word",
+                            "search_analyzer": "ik_smart"
+                        },
+                        "time": {
+                            "type": "date"
+                        }
+                    }'
+FILE:
+  filePath: './data/SmoothNLP金融新闻数据集样本20k.xlsx'
+  fileName: ''
